@@ -1,4 +1,4 @@
-# To-Do List Javascript Only
+# To-Do List unicamente con Javascript
 ## Descripción
 Una aplicación que permite al usuario agregar tareas, marcarlas como completadas y eliminarlas. Las tareas se almacenan localmente para que no se pierdan al recargar la página.
 
