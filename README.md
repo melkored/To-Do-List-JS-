@@ -3,7 +3,7 @@
 Una aplicación que permite al usuario agregar tareas, marcarlas como completadas y eliminarlas. Las tareas se almacenan localmente para que no se pierdan al recargar la página.
 
 ## Puntos Clave
-- Crea un formulario para agregar tareas.
+- Crear un formulario para agregar tareas.
 - Mostrar las tareas en una lista.
 - Agrega botones para marcar tareas como completadas y eliminarlas.
 - Usar ´localStorage´ para guardar las tareas.
