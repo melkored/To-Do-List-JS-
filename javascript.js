@@ -15,7 +15,7 @@ let appendItems = function () {
   for (let i = 0; i < toDoList.length; i++) {
     let listItem = document.createElement("li");
     listItem.textContent = toDoList[i];
-    listElement.append(listItem);
+    createListElement.append(listItem);
   }
 };
 
@@ -28,13 +28,13 @@ let setToLocalStorage = function (list) {
 // Add new element to local storage
 let addNewTaskToList = function (newItem) {
   if (toDoList) {
-    console.log("List", toDoList, newItem);
     toDoList.push(newItem);
     setToLocalStorage(toDoList);
   } else {
     let newArray = new Array(newItem);
     setToLocalStorage(newArray);
   }
+  appendItems();
 };
 
 // Get Existing div element
@@ -58,7 +58,7 @@ let createContentDiv = document.createElement("div");
 createContentDiv.classList.add("tasks-list");
 
 // // - List Element
-let listElement = document.createElement("ul");
+let createListElement = document.createElement("ul");
 
 // Append components
 
@@ -73,7 +73,7 @@ createForm.append(createBasicButton);
 // // - Add tasks list if there´s items in it
 if (toDoList) {
   toDoListBody.append(createContentDiv);
-  createContentDiv.append(listElement);
+  createContentDiv.append(createListElement);
   appendItems();
 }
 
