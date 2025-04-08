@@ -1,16 +1,16 @@
-const toString = function (content) {
+let toString = function (content) {
   return JSON.stringify(content);
 };
 
-const toJson = function (content) {
+let toJson = function (content) {
   return JSON.parse(content);
 };
 
 // Get items from Local Storage
-const completeStringToDoList = localStorage.getItem("toDoList");
-const toDoList = toJson(completeStringToDoList);
+let completeStringToDoList = localStorage.getItem("toDoList");
+let toDoList = toJson(completeStringToDoList);
 
-const appendItems = function () {
+let appendItems = function () {
   debugger;
   for (let i = 0; i < toDoList.length; i++) {
     let listItem = document.createElement("li");
@@ -19,21 +19,30 @@ const appendItems = function () {
   }
 };
 
+// Add new element to local storage
+let addNewTaskToList = function (newItem) {
+  console.log("HERE", toDoList, newItem);
+};
+
 // Get Existing div element
 let toDoListBody = document.getElementById("toDoListBody");
 
 // Create Basic Elements and added features
+// // -Form
+let createForm = document.createElement("form");
+
 // // - Add Button
-let basicButton = document.createElement("button");
-basicButton.innerText = "Agregar Tarea";
+let createBasicButton = document.createElement("button");
+createBasicButton.innerText = "Agregar Tarea";
 
 // // - Task Input
-let taskInput = document.createElement("input");
-taskInput.placeholder = "Nombre de tarea";
+let createTaskInput = document.createElement("input");
+createTaskInput.placeholder = "Nombre de tarea";
+createTaskInput.id = "new-task";
 
 // // - Content div
-let contentDiv = document.createElement("div");
-contentDiv.classList.add("tasks-list");
+let createContentDiv = document.createElement("div");
+createContentDiv.classList.add("tasks-list");
 
 // // - List Element
 let listElement = document.createElement("ul");
@@ -42,9 +51,11 @@ let listElement = document.createElement("ul");
 
 // Append to the DOM
 
-toDoListBody.append(taskInput);
+toDoListBody.append(createForm);
 
-toDoListBody.append(basicButton);
+createForm.append(createTaskInput);
+
+createForm.append(createBasicButton);
 
 // // - Add tasks list if there´s items in it
 if (toDoList) {
@@ -55,11 +66,13 @@ if (toDoList) {
 
 // Event Listeners
 
-const addTask = function () {
-  console.log("inside");
+let addTask = function (event) {
+  event.preventDefault();
+  let newTaskTitle = document.getElementById("new-task").value;
+  addNewTaskToList(newTaskTitle);
 };
 
 // Add event listeners
-basicButton.addEventListener("click", addTask);
+createBasicButton.addEventListener("click", addTask);
 
 console.log("List");
