@@ -11,7 +11,6 @@ let completeStringToDoList = localStorage.getItem("toDoList");
 let toDoList = toJson(completeStringToDoList);
 
 let appendItems = function () {
-  debugger;
   for (let i = 0; i < toDoList.length; i++) {
     let listItem = document.createElement("li");
     listItem.textContent = toDoList[i];
@@ -34,7 +33,6 @@ let addNewTaskToList = function (newItem) {
     let newArray = new Array(newItem);
     setToLocalStorage(newArray);
   }
-  appendItems();
 };
 
 // Get Existing div element
@@ -55,10 +53,12 @@ createTaskInput.id = "new-task";
 
 // // - Content div
 let createContentDiv = document.createElement("div");
-createContentDiv.classList.add("tasks-list");
+createContentDiv.classList.add("tasks-list-div");
 
 // // - List Element
 let createListElement = document.createElement("ul");
+createListElement.classList.add("complete-task-list");
+createListElement.id = "complete-task-list";
 
 // Append components
 
@@ -83,6 +83,9 @@ let addTask = function (event) {
   event.preventDefault();
   let newTaskTitle = document.getElementById("new-task").value;
   addNewTaskToList(newTaskTitle);
+  let completeTasksList = document.getElementById("complete-task-list");
+  completeTasksList.replaceChildren();
+  appendItems();
 };
 
 // Add event listeners
