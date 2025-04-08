@@ -19,9 +19,22 @@ let appendItems = function () {
   }
 };
 
+// Set Items to local storage
+let setToLocalStorage = function (list) {
+  let listToString = toString(list);
+  localStorage.setItem("toDoList", listToString);
+};
+
 // Add new element to local storage
 let addNewTaskToList = function (newItem) {
-  console.log("HERE", toDoList, newItem);
+  if (toDoList) {
+    console.log("List", toDoList, newItem);
+    toDoList.push(newItem);
+    setToLocalStorage(toDoList);
+  } else {
+    let newArray = new Array(newItem);
+    setToLocalStorage(newArray);
+  }
 };
 
 // Get Existing div element
@@ -59,8 +72,8 @@ createForm.append(createBasicButton);
 
 // // - Add tasks list if there´s items in it
 if (toDoList) {
-  toDoListBody.append(contentDiv);
-  contentDiv.append(listElement);
+  toDoListBody.append(createContentDiv);
+  createContentDiv.append(listElement);
   appendItems();
 }
 
@@ -74,5 +87,3 @@ let addTask = function (event) {
 
 // Add event listeners
 createBasicButton.addEventListener("click", addTask);
-
-console.log("List");
