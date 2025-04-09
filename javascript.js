@@ -10,10 +10,16 @@ let toJson = function (content) {
 let completeStringToDoList = localStorage.getItem("toDoList");
 let toDoList = toJson(completeStringToDoList);
 
+// Render List Items
 let appendItems = function () {
   for (let i = 0; i < toDoList.length; i++) {
-    let listItem = document.createElement("li");
-    listItem.textContent = toDoList[i];
+    let listItem = document.createElement("div");
+    listItem.classList.add("single-task");
+    listItem.id = `task-${i}`;
+    let itemTitle = document.createElement("span");
+    itemTitle.innerHTML = toDoList[i];
+
+    listItem.append(itemTitle);
     createListElement.append(listItem);
   }
 };
@@ -56,7 +62,7 @@ let createContentDiv = document.createElement("div");
 createContentDiv.classList.add("tasks-list-div");
 
 // // - List Element
-let createListElement = document.createElement("ul");
+let createListElement = document.createElement("div");
 createListElement.classList.add("complete-task-list");
 createListElement.id = "complete-task-list";
 
