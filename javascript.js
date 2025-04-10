@@ -13,14 +13,30 @@ let toDoList = toJson(completeStringToDoList);
 // Render List Items
 let appendItems = function () {
   for (let i = 0; i < toDoList.length; i++) {
+    // Create paren DIV
     let listItem = document.createElement("div");
     listItem.classList.add("single-task");
     listItem.id = `task-${i}`;
+
+    // Create span title
     let itemTitle = document.createElement("span");
     itemTitle.innerHTML = toDoList[i];
 
-    listItem.append(itemTitle);
+    // Create Clear button
+    let clearButton = document.createElement("button");
+    clearButton.id = "clear-btn";
+    clearButton.innerText = "Borrar Tarea";
+
+    // Create Complete button
+    let completeButton = document.createElement("button");
+    completeButton.id = "complete-btn";
+    completeButton.innerText = "Completar Tarea";
+
+    // Append created Elements in the DIV
     createListElement.append(listItem);
+    listItem.append(itemTitle);
+    listItem.append(completeButton);
+    listItem.append(clearButton);
   }
 };
 
@@ -63,8 +79,8 @@ createContentDiv.classList.add("tasks-list-div");
 
 // // - List Element
 let createListElement = document.createElement("div");
-createListElement.classList.add("complete-task-list");
-createListElement.id = "complete-task-list";
+createListElement.classList.add("all-task-list");
+createListElement.id = "all-task-list";
 
 // Append components
 
@@ -89,7 +105,7 @@ let addTask = function (event) {
   event.preventDefault();
   let newTaskTitle = document.getElementById("new-task").value;
   addNewTaskToList(newTaskTitle);
-  let completeTasksList = document.getElementById("complete-task-list");
+  let completeTasksList = document.getElementById("all-task-list");
   completeTasksList.replaceChildren();
   appendItems();
 };
