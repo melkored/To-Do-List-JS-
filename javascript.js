@@ -87,9 +87,7 @@ createListElement.id = "all-task-list";
 // Append to the DOM
 
 toDoListBody.append(createForm);
-
 createForm.append(createTaskInput);
-
 createForm.append(createBasicButton);
 
 // // - Add tasks list if there´s items in it
