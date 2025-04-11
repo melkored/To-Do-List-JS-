@@ -20,16 +20,19 @@ let appendItems = function () {
 
     // Create span title
     let itemTitle = document.createElement("span");
+    itemTitle.classList.add("task-title");
     itemTitle.innerHTML = toDoList[i];
 
     // Create Clear button
     let clearButton = document.createElement("button");
     clearButton.id = "clear-btn";
+    clearButton.name = "clear";
     clearButton.innerText = "Borrar Tarea";
 
     // Create Complete button
     let completeButton = document.createElement("button");
     completeButton.id = "complete-btn";
+    completeButton.name = "complete";
     completeButton.innerText = "Completar Tarea";
 
     // Append created Elements in the DIV
@@ -110,3 +113,14 @@ let addTask = function (event) {
 
 // Add event listeners
 createBasicButton.addEventListener("click", addTask);
+toDoListBody.addEventListener("click", (event) => {
+  let target = event.target;
+  if (target.name === "complete") {
+    target.parentNode.childNodes[0].classList.toggle("line");
+    // console.log("button", event.target.name);
+    // console.log("button", event.target.parentNode.id);
+    // console.log("button", event.target.parentNode.childNodes[0]);
+  } else {
+    /// Aqui va el código para eliminar la tarea de la lista y de local storage
+  }
+});

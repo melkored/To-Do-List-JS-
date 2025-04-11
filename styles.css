@@ -4,3 +4,7 @@
   display: grid;
   grid-template-columns: 1fr 0.25fr 0.25fr;
 }
+
+.line{
+  text-decoration: line-through;
+}
