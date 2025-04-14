@@ -21,19 +21,19 @@ let appendItems = function () {
     // Create span title
     let itemTitle = document.createElement("span");
     itemTitle.classList.add("task-title");
-    itemTitle.innerHTML = toDoList[i];
+    itemTitle.textContent = toDoList[i];
 
     // Create Clear button
     let clearButton = document.createElement("button");
     clearButton.id = "clear-btn";
     clearButton.name = "clear";
-    clearButton.innerText = "Borrar Tarea";
+    clearButton.textContent = "Borrar Tarea";
 
     // Create Complete button
     let completeButton = document.createElement("button");
     completeButton.id = "complete-btn";
     completeButton.name = "complete";
-    completeButton.innerText = "Completar Tarea";
+    completeButton.textContent = "Completar Tarea";
 
     // Append created Elements in the DIV
     createListElement.append(listItem);
@@ -69,7 +69,7 @@ let createForm = document.createElement("form");
 
 // // - Add Button
 let createBasicButton = document.createElement("button");
-createBasicButton.innerText = "Agregar Tarea";
+createBasicButton.textContent = "Agregar Tarea";
 
 // // - Task Input
 let createTaskInput = document.createElement("input");
@@ -121,6 +121,6 @@ toDoListBody.addEventListener("click", (event) => {
     // console.log("button", event.target.parentNode.id);
     // console.log("button", event.target.parentNode.childNodes[0]);
   } else {
-    /// Aqui va el código para eliminar la tarea de la lista y de local storage
+    /// Aqui va el código para eliminar la tarea de la lista y de local
   }
 });
