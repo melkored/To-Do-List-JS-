@@ -27,13 +27,13 @@ let appendItems = function () {
     let clearButton = document.createElement("button");
     clearButton.id = "clear-btn";
     clearButton.name = "clear";
-    clearButton.textContent = "Borrar Tarea";
+    clearButton.textContent = "Borrar";
 
     // Create Complete button
     let completeButton = document.createElement("button");
     completeButton.id = "complete-btn";
     completeButton.name = "complete";
-    completeButton.textContent = "Completar Tarea";
+    completeButton.textContent = "Completar";
 
     // Append created Elements in the DIV
     createListElement.append(listItem);

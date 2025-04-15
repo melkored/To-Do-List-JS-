@@ -1,8 +1,16 @@
+.all-task-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 .single-task{
-  width: 100%;
-  background-color: aqua;
   display: grid;
   grid-template-columns: 1fr 0.25fr 0.25fr;
+  align-items: center;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .line{
