@@ -89,8 +89,17 @@ if (toDoList) {
 let addTaskAction = function (event) {
   event.preventDefault();
   let newTaskTitle = document.getElementById("new-task").value;
-  // Add new task to the list
-  addNewTaskToList(newTaskTitle);
+  console.log(newTaskTitle !== null, newTaskTitle !== "");
+  if (newTaskTitle !== null && newTaskTitle !== "") {
+    // Add new task to the list
+    addNewTaskToList(newTaskTitle);
+    reRenderTaskList();
+  } else {
+    alert("Agrega un nombre correcto a la tarea");
+  }
+};
+
+let reRenderTaskList = function () {
   let completeTasksList = document.getElementById("all-task-list");
   // Remove all the children inside the task list div
   completeTasksList.replaceChildren();
@@ -129,7 +138,8 @@ let deleteTaskAction = function (target) {
   let selectedTaskIndex = toDoList.indexOf(selectedTaskName);
   if (selectedTaskIndex !== -1) {
     toDoList.splice(selectedTaskIndex, 1);
-    renderListItems();
+    setToLocalStorage(toDoList);
+    reRenderTaskList();
   }
 };
 
@@ -138,12 +148,8 @@ let taskActions = function (event) {
   let target = event.target;
   if (target.name === "complete") {
     completeTaskAction(target);
-    // console.log("button", event.target.name);
-    // console.log("button", event.target.parentNode.id);
-    // console.log("button", event.target.parentNode.childNodes[0]);
-  } else {
+  } else if (target.name === "clear") {
     deleteTaskAction(target);
-    /// Aqui va el código para eliminar la tarea de la lista y de local
   }
 };
 
