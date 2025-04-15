@@ -11,7 +11,7 @@ let completeStringToDoList = localStorage.getItem("toDoList");
 let toDoList = toJson(completeStringToDoList);
 
 // Render List Items
-let appendItems = function () {
+let renderListItems = function () {
   for (let i = 0; i < toDoList.length; i++) {
     // Create paren DIV
     let listItem = document.createElement("div");
@@ -40,23 +40,6 @@ let appendItems = function () {
     listItem.append(itemTitle);
     listItem.append(completeButton);
     listItem.append(clearButton);
-  }
-};
-
-// Set Items to local storage
-let setToLocalStorage = function (list) {
-  let listToString = toString(list);
-  localStorage.setItem("toDoList", listToString);
-};
-
-// Add new element to local storage
-let addNewTaskToList = function (newItem) {
-  if (toDoList) {
-    toDoList.push(newItem);
-    setToLocalStorage(toDoList);
-  } else {
-    let newArray = new Array(newItem);
-    setToLocalStorage(newArray);
   }
 };
 
@@ -93,34 +76,67 @@ toDoListBody.append(createForm);
 createForm.append(createTaskInput);
 createForm.append(createBasicButton);
 
-// // - Add tasks list if there´s items in it
+// // Render tasks list if there´s items in it
 if (toDoList) {
   toDoListBody.append(createContentDiv);
   createContentDiv.append(createListElement);
-  appendItems();
+  renderListItems();
 }
 
-// Event Listeners
+// Functions
 
-let addTask = function (event) {
+// // Add new task
+let addTaskAction = function (event) {
   event.preventDefault();
   let newTaskTitle = document.getElementById("new-task").value;
+  // Add new task to the list
   addNewTaskToList(newTaskTitle);
   let completeTasksList = document.getElementById("all-task-list");
+  // Remove all the children inside the task list div
   completeTasksList.replaceChildren();
-  appendItems();
+  // Render the new list in inside the div
+  renderListItems();
 };
 
-// Add event listeners
-createBasicButton.addEventListener("click", addTask);
-toDoListBody.addEventListener("click", (event) => {
+// // Set Items to local storage
+let setToLocalStorage = function (list) {
+  let listToString = toString(list);
+  localStorage.setItem("toDoList", listToString);
+};
+
+// // Add new element to local storage
+let addNewTaskToList = function (newItem) {
+  if (toDoList) {
+    toDoList.push(newItem);
+    setToLocalStorage(toDoList);
+  } else {
+    let newArray = new Array(newItem);
+    setToLocalStorage(newArray);
+  }
+};
+
+// // Complete Task
+
+let completeTaskAction = function (target) {
+  target.parentNode.childNodes[0].classList.toggle("line");
+};
+
+// // Delete Task
+
+// // Task Actions
+let taskActions = function (event) {
   let target = event.target;
   if (target.name === "complete") {
-    target.parentNode.childNodes[0].classList.toggle("line");
+    completeTaskAction(target);
     // console.log("button", event.target.name);
     // console.log("button", event.target.parentNode.id);
     // console.log("button", event.target.parentNode.childNodes[0]);
   } else {
     /// Aqui va el código para eliminar la tarea de la lista y de local
   }
-});
+};
+
+// Add event listeners
+
+createBasicButton.addEventListener("click", addTaskAction);
+toDoListBody.addEventListener("click", taskActions);
