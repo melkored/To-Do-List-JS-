@@ -122,6 +122,16 @@ let completeTaskAction = function (target) {
 };
 
 // // Delete Task
+let deleteTaskAction = function (target) {
+  // Get current task text
+  let selectedTaskName = target.parentNode.childNodes[0].innerText;
+  // Gett current task array index
+  let selectedTaskIndex = toDoList.indexOf(selectedTaskName);
+  if (selectedTaskIndex !== -1) {
+    toDoList.splice(selectedTaskIndex, 1);
+    renderListItems();
+  }
+};
 
 // // Task Actions
 let taskActions = function (event) {
@@ -132,6 +142,7 @@ let taskActions = function (event) {
     // console.log("button", event.target.parentNode.id);
     // console.log("button", event.target.parentNode.childNodes[0]);
   } else {
+    deleteTaskAction(target);
     /// Aqui va el código para eliminar la tarea de la lista y de local
   }
 };
